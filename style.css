@@ -13,10 +13,31 @@ body{
 #header{
     width:100%;
     height: 100vh;
-    background-image:url(image/12.jpeg);
+    /*linear-gradient*/
+    background: linear-gradient(135deg, #0b0101, #131212), url('your-image.jpg') no-repeat center center;
     background-size:cover;
     background-position:center;
+
 }
+/* Add fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Slide up slightly */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header-text {
+    margin-top: 10%;
+    font-size: 20px;
+    opacity: 0; /* Start as invisible */
+    animation: fadeIn 1.5s ease-in-out forwards; /* Trigger fadeIn animation */
+}
+
 .container{
     padding:10px 10%;
 }
@@ -30,6 +51,7 @@ nav{
     width:140px;
 
 }
+/*Child combinator*/
 nav ul li{
     display:inline-block;
     list-style:none;
@@ -41,6 +63,7 @@ nav ul li a{
     font-size:18px;
     position:relative;
 }
+/*Pseudo elements such as after been used*/
 nav ul li a::after{
     content:'';
     width:0;
@@ -58,6 +81,17 @@ nav ul li a:hover::after{
     margin-top: 10%;
     font-size: 20px;;
 }
+/* Negation pseudo-class to style non-active navigation links */
+nav ul li a:not(.active) {
+    color: #b54769; /* Darker pink color for non-active links */
+    opacity: 0.8; /* Slightly faded to highlight non-active state */
+}
+
+.active {
+    color: #ff004f; /* Highlight color for active link */
+    font-weight: bold;
+}
+
 
 
 .header-text h1{
@@ -78,12 +112,19 @@ nav ul li a:hover::after{
     transition: 0.3s ease;
     color: #b74b4b;
 }
-
+/*transform*/
 .social-icons a:hover{
     color: black;
     transform: scale(1.3) translateY(-5px);
     background-color: #b74b4b;
     box-shadow: 0  0 25px #b74b4b;
+}
+/*Structural selectors*/
+.social-icons a:first-child {
+    background-color: rgba(10, 1, 1, 0.6); /* Semi-transparent background for first icon */
+}
+.social-icons a:last-child {
+    background-color: rgba(12, 10, 10, 0.6); /* Semi-transparent background for last icon */
 }
 /*about*/
 #about{
@@ -122,6 +163,7 @@ nav ul li a:hover::after{
     flex:1;
     padding:20px;
 }
+/* relational selectors*/
 .div1 p{
     color:#b54769;
     font-size:14px;
@@ -153,6 +195,7 @@ nav ul li a:hover::after{
     align-items: start;
 }
 
+
 .blog-post img {
     width: 100%;
     height: auto;
@@ -178,12 +221,19 @@ nav ul li a:hover::after{
 .blog-post a:hover {
     text-decoration: underline;
 }
-
+/* Style every third blog post differently */
+.blog-post:nth-child(2n) {
+    background-color: #444; /* Slightly different background color for every first post */
+    padding: 25px; /* Add extra padding for variation */
+}
+.blog-post:nth-child(2n) {
+    background-color: #444; /* Slightly different background color for every second post */
+    padding: 25px; /* Add extra padding for variation */
+}       
 #contact {
     padding: 60px 0;
     color: white;
 }
-
 .contact-form {
     background-color: #333;
     padding: 20px;
@@ -193,11 +243,8 @@ nav ul li a:hover::after{
     display: flex;
     flex-direction: column;
 }
-
-.contact-form label {
-    font-size: 16px;
-    margin: 10px 0 5px;
-    color: #ff004f;
+.sub-title {
+    text-align: center;
 }
 
 .contact-form input[type="text"],
@@ -211,14 +258,24 @@ nav ul li a:hover::after{
     background-color: #222;
     color: white;
 }
+/*attribute selectors*/
+/* Validity pseudo-classes */
+.contact-form input[type="text"]:valid,
+.contact-form input[type="email"]:valid,
+.contact-form textarea:valid {
+    border: 2px solid #28a745; /* Green border for valid input */
+}
+
+.contact-form input[type="text"]:invalid,
+.contact-form input[type="email"]:invalid,
+.contact-form textarea:invalid {
+    border: 2px solid #ff004f; /* Red border for invalid input */
+}
 
 .contact-form input[type="checkbox"] {
     margin-right: 10px;
 }
 
-.contact-form textarea {
-    resize: vertical;
-}
 
 .contact-form .btn {
     padding: 12px 20px;
@@ -234,4 +291,5 @@ nav ul li a:hover::after{
 .contact-form .btn:hover {
     background-color: #b54769;
 }
+
 
